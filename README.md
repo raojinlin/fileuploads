@@ -19,11 +19,11 @@ $ docker run -p 8083:8083 --name fileuplodas fileuploads
 ### 文件上传
 
 ```
-$ curl http://127.0.0.1:5000/ --form file=@file
+$ curl http://127.0.0.1:8083/ --form file=@file
 ```
 
 ### 访问已上传的文件
 
 ```
-$ curl http://127.0.0.1:5000/uploads/<filename>
+$ curl http://127.0.0.1:8083/uploads/<filename>
 ```
