@@ -8,6 +8,12 @@ $ ./fileuploads.py # development
 $ waitress-serve --port=8083 --call 'fileuploads:create_app' # production
 ```
 
+使用docker
+```bash
+$ docker built . -t fileuploads
+$ docker run -p 8083:8083 --name fileuplodas fileuploads
+```
+
 ## 接口
 
 ### 文件上传
