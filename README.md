@@ -18,6 +18,13 @@ $ docker run -p 8083:8083 --name fileuplodas fileuploads
 
 ### 文件上传
 
+#### 使用浏览器上传文件
+
+[http://127.0.0.1:8083/](http://127.0.0.1:8083/)
+
+
+#### 使用curl上传文件
+
 ```
 $ curl http://127.0.0.1:8083/ --form file=@file
 ```
