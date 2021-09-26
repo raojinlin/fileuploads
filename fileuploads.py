@@ -3,7 +3,6 @@
 import os
 
 from flask import Flask, flash, request, redirect, url_for, send_from_directory
-from werkzeug.utils import secure_filename
 
 
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'uploads')
@@ -12,6 +11,9 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SECRET_KEY'] = b'\xbe\x08\xed\x13\xe0\xc4\xf3\x06\x02I\xefp\xebX\xfb.'
 
+
+def secure_filename(filename):
+    return filename.split('/').pop()
 
 
 def render_form():
@@ -43,6 +45,7 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
 
+        app.logger.warning('received new file %s' % file.filename)
         filename = secure_filename(file.filename)
         app.logger.warning('A new file uploaded: %s' % filename)
         save_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -52,7 +55,7 @@ def upload_file():
         return redirect(url_for('download_file', name=filename))
 
     return render_form()
-           
+
 
 
 @app.route('/uploads/<name>')
